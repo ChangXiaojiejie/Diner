@@ -1,0 +1,24 @@
+<div id="reco-inactive"><div id="reco-progress"></div></div>
+<div id="reco-container">
+    <app-header></app-header>
+    <!-- 左侧 start -->
+    <div id="container">
+        <!-- 左侧 start -->
+        <nav id="nav-container">
+            <section class="mainnav">
+                <div class="applist"><ul class="appnav" #appNavs="appNavs" app.navs [menus]="browserMain.menus"></ul></div>
+            </section>
+        </nav>
+        <app-nav-more [handle]="appNavs.more" [data]="browserMain.menus" [count]="browserMain.count" (change)="browserMain.menuSortChange()"></app-nav-more>
+        <!-- 内容开始 -->
+        <router-outlet></router-outlet>
+        <router-outlet name="expand"></router-outlet>
+        <!-- 内容结束 -->
+        <aside id="aside-container"></aside>
+        <!-- 消息提醒 -->
+        <popover-bottom></popover-bottom>
+    </div>
+    <footer></footer>
+</div>
+<div id="reco-modal"></div>
+<div id="reco-message"></div>

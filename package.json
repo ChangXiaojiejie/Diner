@@ -1,0 +1,39 @@
+{
+    "name": "angular-webapp",
+    "version": "1.0.0",
+    "description": "angular-webapp",
+    "license": "MIT",
+    "scripts": {
+        "ng": "ng",
+        "start": "ng serve --open --port 3008 --host 0.0.0.0",
+        "build": "ng build --prod",
+        "sass:assets": "sass --watch src/Assets/",
+        "sass:skin": "sass --watch src/Skin/",
+        "sass": "sass --watch src/Assets/ src/Skin/ --style compressed",
+        "test": "ng build",
+        "lint": "ng lint",
+        "preinstall": "node ./tools/yarn/check-yarn.js"
+    },
+    "private": true,
+    "dependencies": {
+        "@reco/ide": "^8.5.3",
+        "classlist.js": "^1.1.20150312"
+    },
+    "devDependencies": {
+        "@types/bisystem": "0.1.6",
+        "codelyzer": "~4.5.0",
+        "ts-node": "~7.0.1",
+        "tslib": "^1.9.0",
+        "tslint": "^5.11.0",
+        "typescript": "~3.2.2"
+    },
+    "resolutions":{},
+    "repository": {
+        "type": "git",
+        "url": "http://192.168.1.246/r/framework/BiPark_IDE.git"
+    },
+    "prettier": {
+        "printWidth": 160,
+        "tabWidth": 4
+    }
+}

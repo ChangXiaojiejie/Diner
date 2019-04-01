@@ -1,0 +1,51 @@
+<ng-template #header let-context>
+  <h2 class="prop-slider-title">{{info.ContactName}}</h2>
+  <button class="close" data-close-slider="self" type="button" (click)="context.cancel()">×</button>
+</ng-template>
+<div class="col-sm-12">
+  <div class="panel panel-bordered panel-bordered-left">
+    <div class="panel-heading">
+      <h3 class="panel-title">个人信息</h3>
+    </div>
+    <div class="panel-body">
+      <div class="table-layout">
+        <div>
+          <span>项目名称：</span>
+          <span>{{info.BindTableValue}}</span>
+        </div>
+        <div>
+          <span>手机：</span>
+          <span>{{info.Mobile}}</span>
+        </div>
+        <div>
+          <span>电子邮件：</span>
+          <span>{{info.Email}}</span>
+        </div>
+        <div>
+          <span>注册时间：</span>
+          <span>{{info.InputTime | date: "yyyy年MM月dd日 HH:mm"}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-bordered panel-bordered-left">
+    <div class="panel-heading">
+      <h3 class="panel-title">公司信息</h3>
+    </div>
+    <div class="panel-body">
+      <div class="table-layout">
+        <div>
+          <span>公司名称：</span>
+          <span>{{info.CompanyName}}</span>
+        </div>
+        <div>
+          <span>部门：</span>
+          <span>{{info.DeptName}}</span>
+        </div>
+        <div>
+          <span>岗位：</span>
+          <span>{{info.Position}}</span>
+        </div>
+      </div>
+    </div>
+  </div>

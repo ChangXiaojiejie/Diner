@@ -1,0 +1,102 @@
+<div class="header-bar">
+    <div class="pull-left">
+      <nav-map-path suffix>
+      </nav-map-path>
+    </div>
+    <div class="pull-right mb10">
+      <button class="btn btn-cyan" *ngIf="checkStrategy('ACCOUNT_USER_ADD')" (click)="showDialog(add)">
+        <i class="fa fa-plus-square"></i> <span>新增联系人</span>
+      </button>
+    </div>
+  </div>
+  <search-panel hide>
+    <div class="row">
+      <div class="form-inline">
+          <div class="col-xs-12 col-md-4 col-lg-4">
+            <div class="form-group">
+              <label class="label-name">联系人</label>
+              <div class="lab-box">
+                <input type="text" class="form-control " #cName placeholder="联系人" (keyup)="searchKey(cName,'ContactName')" types="input"
+                  search-field>
+              </div>
+            </div>
+          </div>
+        <div class="col-xs-12 col-md-4 col-lg-4">
+          <div class="form-group">
+            <label class="label-name">手机号码</label>
+            <div class="lab-box">
+              <input type="text" class="form-control " #model placeholder="手机号码" (keyup)="searchKey(model,'Mobile')" types="input" search-field>
+            </div>
+          </div>
+        </div>
+  
+        <div class="col-xs-12 col-md-4 col-lg-4">
+          <div class="form-group">
+            <label class="label-name">项目名称</label>
+            <div class="lab-box">
+              <input type="text" class="form-control " #key placeholder="项目名称" (keyup)="searchKey(key,'BindTableValue')" types="input"
+                search-field>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </search-panel>
+  
+  <div class="content">
+
+  
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover" biCheckbox #all="biCheckbox" auto-rest>
+        <thead>
+          <!-- <tr class="default">
+            <td colspan="7" class="alignLeft">{{x.Key}}</td>
+          </tr> -->
+          <tr>
+            <td width="5%" class="alignCenter">
+              <input type="checkbox">
+            </td>
+            <td width="14%" bi-orderby="ContactName">姓名
+              <cbx-panel>
+                  <a *ngIf="all.checked&&checkStrategy('CONTACT_CONTACT_DEL')" class="btn btn-white" (click)="delete(all)">删除</a>
+              </cbx-panel>
+
+            </td>
+            <td width="18%">公司名称</td>
+            <td>项目名称</td>
+            <td width="16%" bi-orderby="Mobile">手机</td>
+            <td width="18%" bi-orderby="Email">电子邮件</td>
+            <td width="18%" bi-orderby="InputTime">注册时间</td>
+          </tr>
+        </thead>
+        <!-- pageInfo来源于core中的pages中的方法。如果有pageInfo存在，就会获取属性中的Items,Items是请求获取到的数据 -->
+        <tbody class="tbody-hover"  *ngFor="let item of pageInfo?.Items" style="border:0px;">
+          <tr (click)="showSlider($event, slider, item)" >
+              <td><input type="checkbox" [value]="item.ID" /></td>
+              <td class="alignLeft">
+                {{item.ContactName}}
+                  <div class="icon-group">
+                    <a href="javascript:;" *ngIf="checkStrategy('CONTACT_CONTACT_EDIT')" class="icon-items fa fa-edit" data-toggle="tooltip"
+                    title="编辑" (click)="showDialog(edit, item)"></a>
+                    <a href="javascript:;" *ngIf="checkStrategy('CONTACT_CONTACT_DEL')" class="icon-items fa fa-trash-o" data-toggle="tooltip"
+                    title="删除" (click)="delete(item.ID)"></a>
+                  </div>
+              </td>
+
+              <td class="alignLeft">{{item.CompanyName}}</td>
+              <td class="alignLeft">{{item.BindTableValue}}</td>
+              <td>{{item.Mobile}}</td>
+              <td>{{item.Email}}</td>
+              <td>{{ item.InputTime | date: "yyyy/MM/dd HH:mm" }}</td>
+          </tr>
+      </tbody>
+      </table>
+    </div>
+    <!--这是一个分页的组件，在分页的组件中获取数据，然后再见数据渲染出来 获取数据的方式 callBack="getContacts" -->
+    <bi-pager #pager class="pull-right" callBack="getContacts"></bi-pager>
+  </div>
+  <slider-dialog #slider component="StockSliderComponent" size="w400" title="详细信息"></slider-dialog>
+  <bi-dialog #edit size="md" title="编辑联系人" component='StockEditComponent'></bi-dialog>
+  <bi-dialog #remove size="md" title="删除数据" submitText='发送' ></bi-dialog>
+  <bi-dialog #add size="md" title="创建联系人" component='StockEditComponent'></bi-dialog>
+  

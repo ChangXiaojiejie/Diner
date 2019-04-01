@@ -1,0 +1,100 @@
+<form class="form-horizontal" formValidate="ContactVM">
+  <div class="form-group col-sm-6">
+    <label class="control-label" for="ContactName">姓名：</label>
+    <input type="text" class="form-control" id="ContactName" name="ContactName" [(ngModel)]="editInfo.ContactName" (change)="updateEName()">
+  </div>
+  <div class="form-group col-sm-6">
+    <label class="control-label" for="BindTableValue">项目名称：</label>
+    <input type="text" class="form-control" id="BindTableValue" name="BindTableValue" [(ngModel)]="editInfo.BindTableValue">
+  </div>
+  <div class="form-group col-sm-6">
+    <label class="control-label" for="Mobile">手机：</label>
+    <input type="text" class="form-control" id="Mobile" name="Mobile" [(ngModel)]="editInfo.Mobile">
+  </div>
+  <div class="form-group col-sm-6">
+    <label class="control-label" for="Tel">电话：</label>
+    <input type="text" class="form-control" id="Tel" name="Tel" [(ngModel)]="editInfo.Tel">
+  </div>
+  <div class="form-group col-sm-6">
+    <label class="control-label" for="Email">电子邮件：</label>
+    <input type="text" class="form-control" id="Email" name="Email" [(ngModel)]="editInfo.Email">
+  </div>
+  <div class="form-group col-sm-6">
+    <label class="control-label" for="Fax">传真：</label>
+    <input type="text" class="form-control" [(ngModel)]="editInfo.Fax" id="Fax" name="Fax">
+  </div>
+  <div class="form-group col-sm-6">
+    <label class="control-label" for="IDCardNo">证件号码：</label>
+    <input type="text" class="form-control" [(ngModel)]="editInfo.IDCardNo" id="IDCardNo" name="IDCardNo">
+  </div>
+  <div class="form-group col-sm-6">
+    <label class="control-label">出生日期：</label>
+    <div>
+      <select id="BirthYear" name="BirthYear" [(ngModel)]="editInfo.BirthYear" style="width:20%">
+        <option *ngFor="let x of years" [value]="x.Value">{{x.Name}}</option>
+      </select> 年
+      <select id="BirthMonth" name="BirthMonth" [(ngModel)]="editInfo.BirthMonth" style="width:20%">
+        <option *ngFor="let x of months" [value]="x.Value">{{x.Name}}</option>
+      </select> 月
+      <select id="BirthDay" name="BirthDay" [(ngModel)]="editInfo.BirthDay" style="width:20%">
+        <option *ngFor="let x of days" [value]="x.Value">{{x.Name}}</option>
+      </select> 日
+    </div>
+  </div>
+  <div class="form-group col-sm-6">
+    <label class="control-label" for="Sex">性别：</label>
+    <div class="radio radio-inline radio-default">
+      <label>
+        <input type="radio" name="Sex" [(ngModel)]="editInfo.Sex" [value]="">未知
+      </label>
+      <label>
+        <input type="radio" name="Sex" [(ngModel)]="editInfo.Sex" [value]="1">男
+      </label>
+      <label>
+        <input type="radio" name="Sex" [(ngModel)]="editInfo.Sex" [value]="2">女
+      </label>
+    </div>
+  </div>
+  <div class="form-group col-sm-6">
+    <label class="control-label" for="IsDefault">是否星标：</label>
+    <div class="radio radio-inline radio-default">
+      <label>
+        <input type="radio" name="IsDefault" [(ngModel)]="editInfo.IsDefault" [value]="true">是
+      </label>
+      <label>
+        <input type="radio" name="IsDefault" [(ngModel)]="editInfo.IsDefault" [value]="false">否
+      </label>
+    </div>
+  </div>
+  <div class="form-group col-sm-12">
+    <label class="control-label" for="BindTableValue">公司名称：</label>
+    <input type="text" class="form-control" id="CompanyName" name="CompanyName" [(ngModel)]="editInfo.CompanyName">
+  </div>
+  <div class="form-group col-sm-6">
+    <label class="control-label" for="DeptName">部门：</label>
+    <input type="text" class="form-control" id="DeptName" name="DeptName" [(ngModel)]="editInfo.DeptName">
+  </div>
+  <div class="form-group col-sm-6">
+    <label class="control-label" for="DeptName">岗位：</label>
+    <input type="text" class="form-control" id="Position" name="Position" [(ngModel)]="editInfo.Position">
+  </div>
+  <div class="form-group col-sm-12">
+    <label class="control-label">角色：</label>
+    <div class="checkbox checkbox-inline checkbox-default">
+      <label *ngFor="let item of contactTypeList">
+        <input type="checkbox" [checked]="isRoleChecked(item)" (click)="roleClick(item)">{{item.TagName}}
+      </label>
+    </div>
+  </div>
+  <div class="form-group col-sm-12">
+    <label class="control-label" for="Resume">简历：</label>
+    <input type="text" class="form-control" id="Resume" name="Resume" [(ngModel)]="editInfo.Resume">
+  </div>
+
+  <div class="form-group col-xs-12">
+    <label class="control-label" for="parkID">所属园区：</label>
+    <select class="form-control" id="parkID" name="parkID" [(ngModel)]="editInfo.Park">
+      <option *ngFor="let item of parks" [ngValue]='item'>{{item.ParkName}}</option>
+    </select>
+  </div>
+</form>

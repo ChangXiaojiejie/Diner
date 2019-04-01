@@ -1,0 +1,215 @@
+﻿@charset "utf-8";
+
+// 登录页面
+
+* {
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font: 14px/22px "微软雅黑", Helvetica, sans-serif;
+    // background-color: #f8f8f8;
+    overflow: hidden;
+}
+
+/*登陆*/
+.error-info {
+    color: #ea1e1e;
+    line-height: 30px;
+    height: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.sign-in {
+    padding: 8px 40px;
+}
+.sign-input > div {
+    width: 100%;
+    margin: 0 auto;
+}
+.sign-input .input-group {
+    border-bottom: 1px solid #939393;
+}
+.sign-input .input-group > * {
+    border: none;
+    background: transparent;
+    box-shadow: none;
+    outline: none !important;
+    color: #9d9d9d;
+    font-size: 15px;
+}
+
+
+.btn.btn-login {
+    padding: 6px 12px;
+    background: #1c7bc7;
+    border-radius: 0;
+    color: #fff !important;
+    border-color: #1f6ba8;
+}
+
+//修改样式
+.login-label label{
+    margin: 0 !important;
+}
+
+.login-box {
+    position: relative;
+    overflow: hidden;
+    background-color: #2d3337;
+    height: 100vh;
+    .login-form {
+        width: 407px;
+        height: 544px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -272px;
+        margin-left: -203px;
+        .login-log {
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+        .login-input {
+            position: relative;
+            overflow: hidden;
+            margin-top: 85px;
+            .user-login-input {
+                position: relative;
+                overflow: hidden;
+                height: 50px;
+                background: #fff;
+                border-radius: 2px;
+                margin-bottom: 15px;
+                padding-left: 55px;
+                padding-right: 10px;
+                .user-name {
+                    background: url("//assets.bitech.cn/assets/images/user.png") no-repeat;
+                }
+                .user-pwd {
+                    background: url("//assets.bitech.cn/assets/images/pwd.png") no-repeat;
+                }
+                i {
+                    position: absolute;
+                    width: 25px;
+                    height: 25px;
+                    left: 18px;
+                    top: 12px;
+                }
+                input {
+                    height: 100%;
+                    width: 100%;
+                    border: none;
+                    outline: none !important;
+                    font-size: 20px;
+                    color: #666666;
+                    background-color: transparent !important;
+                    box-shadow: none;
+                    padding: 0;
+                }
+                input:-webkit-autofill {
+                    -webkit-transition: background-color 10000s cubic-bezier(1, -100, 1, -100) 0s;
+                }
+            }
+        }
+        .login-state {
+            position: relative;
+            overflow: hidden;
+            label {
+                color: #fff;
+                font-size: 16px;
+            }
+            span {
+                float: right;
+                color: #fff;
+                font-size: 16px;
+                cursor: pointer;
+            }
+            i {
+                color: #ffffff;
+            }
+        }
+        .login-btn {
+            display: block;
+            margin-top: 100px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            width: 100%;
+            font-size: 20px;
+            letter-spacing: 10px;
+            color: #fff;
+            border-radius: 3px;
+            cursor: pointer;
+            background-color: #00b9d5;
+        }
+    }
+}
+
+.login-below {
+    width: 100%;
+    /* position: absolute; */
+    bottom: 30px;
+    color: #fff;
+    text-align: center;
+    margin-top: 80px !important;
+}
+
+.sol-top {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+    @media screen and (min-width: 1024px) and (max-width: 1359px) {
+        .login-form {
+            transform: scale(1);
+        }
+        .login-below {
+            transform: scale(1);
+        }
+    }
+
+    @media screen and (min-height: 0px) and (max-height: 860px) {
+        .login-form {
+            transform: scale(0.9);
+        }
+        .login-below {
+            margin-top: 50px !important;
+        }
+    }
+
+    @media screen and (min-height: 0px) and (max-height: 750px) {
+        .login-form {
+            transform: scale(0.8);
+        }
+        .login-below {
+            margin-top: 30px !important;
+        }
+    }
+
+    @media screen and (min-height: 0px) and (max-height: 650px) {
+        .login-form {
+            transform: scale(0.7);
+        }
+        .login-below {
+            margin-top: 20px !important;
+        }
+    }
+
+    @media screen and (min-height: 0px) and (max-height: 50px) {
+        .login-form {
+            transform: scale(0.6);
+        }
+        .login-below {
+            margin-top: 10px !important;
+        }
+    }

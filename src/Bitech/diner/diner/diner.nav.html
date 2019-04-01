@@ -1,0 +1,14 @@
+<div class="view-groups scroller scrollerbar-primary" nav-area mode="single">
+  <nav-panel *ngIf="checkStrategy('DINER_DINER_ALL')" icon="iconfont icon-wojingshoude-" [nav-title]="'食客列表'">
+    <ul>
+      <li *ngIf="checkStrategy('DINER_DINER_ALL')">
+        <a routerLink="./" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" [title]="'全部'">
+          全部
+        </a>
+      </li>
+      <li *ngIf="checkStrategy('DINER_DINER_ALL')">
+        <a routerLink="./" *ngIf="checkStrategy('DINER_DINER_MGENDER')" [queryParams]="{DGender:'m'}" routerLinkActive="active">男食客</a>
+      </li>
+    </ul>
+  </nav-panel>
+</div>

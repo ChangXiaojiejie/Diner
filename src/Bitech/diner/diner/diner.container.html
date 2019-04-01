@@ -1,0 +1,118 @@
+<div class="header-bar">
+  <div class="pull-left">
+    <nav-map-path suffix>
+    </nav-map-path>
+  </div>
+</div>
+<!-- 搜索--start -->
+<search-panel hide>
+  <div class="row">
+    <div class="form-inline">
+      <div class="col-xs-12 col-md-3 col-lg-3">
+        <div class="form-group">
+          <label class="label-name">食客名称</label>
+          <div class="lab-box">
+            <!-- <input type="text" class="form-control" name="DName" [(ngModel)]="searchParams.DName" #DinderName   placeholder="食客名称" (ngModelChange) ="onSearchPage()" types="input"
+              search-field> -->
+            <input type="text" class="form-control" name="DName" [(ngModel)]="searchParams.DName" #DinderName   placeholder="食客名称" (ngModelChange) ="searchKey(DinderName,'DName')" types="input"
+              search-field>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-md-3 col-lg-3">
+        <div class="form-group">
+          <label class="label-name">喜爱菜系</label>
+          <div class="lab-box">
+            <input type="text" class="form-control" name="DCuisine" [(ngModel)]="searchParams.DCuisine" #DinderCuisine placeholder="喜爱菜系" (ngModelChange) ="searchKey(DinderCuisine,'DCuisine')" types="input"
+              search-field>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-6 ">
+          <div class="form-group">
+              <label class="label-name">操作时间</label>
+              <div class="lab-box">
+                  <input type="text" class="wdate" style="width:calc(50% - 10px)" placeholder="开始时间" bi-wdatepicker [(ngModel)]="searchParams.BeginUserTime" (ngModelChange)="onSearchPage()"
+                      [maxDate]="searchParams.EndUserTime"> ~
+                  <input type="text" class="wdate" style="width:calc(50% - 10px)" placeholder="结束时间" bi-wdatepicker [(ngModel)]="searchParams.EndUserTime" (ngModelChange)="onSearchPage()"
+                      [minDate]="searchParams.BeginUserTime">
+              </div>
+          </div>
+      </div>
+      <div class="col-xs-12 col-md-3 col-lg-3">
+        <div class="form-group">
+          <label class="label-name">手机号码</label>
+          <div class="lab-box">
+            <input type="text" class="form-control" name="DPhone" [(ngModel)]="searchParams.DPhone" #DinderPhone placeholder="手机号码" (ngModelChange) ="searchKey(DinderPhone,'DPhone')" types="input"
+              search-field>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</search-panel>
+<!-- 搜索--end -->
+<div class="content">
+  <div class="toolbar mt0 mb10">
+    <div class="pull-left">
+      <button class="btn btn-cyan" *ngIf="checkStrategy('ACCOUNT_USER_ADD')" (click)="showDialog(add)">添加食客</button>
+    </div>
+    <div class="pull-left">
+      <button class="btn btn-cyan" *ngIf="checkStrategy('DINER_DINER_ADDS')" (click)="showDialog(adds)">批量添加</button>
+    </div>
+    <bi-pager #pager class="pull-right" callBack="getDiners"></bi-pager>
+  </div>
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover" biCheckbox #all="biCheckbox" auto-rest>
+      <thead>
+        <tr>
+          <td width="5%" class="alignCenter">
+            <input type="checkbox">
+          </td>
+          <td width="12%" bi-orderby="DName" class="alignCenter">
+            姓名
+            <cbx-panel>
+                <a *ngIf="all.checked&&checkStrategy('DINER_DINER_DEL')" class="btn btn-white" (click)="delete(all)">删除</a>
+            </cbx-panel>
+          </td>
+          <td width="6%">性别</td>
+          <td width="12%" bi-orderby="DPhone">手机号码</td>
+          <td width="14%" >电子邮箱</td>
+          <td width="6%" >菜系</td>
+          <td width="12%">食客住址</td>
+          <td width="12%">出生日期</td>
+          <td  bi-orderby="InputTime">录入时间</td>
+          
+        </tr>
+      </thead>
+      <tbody style="border:0px;" class="tbody-hover">
+        <tr class="default">
+        </tr>
+        <tr *ngFor="let item of pageInfo?.Items; let i = index" (click)="showSlider($event, slider, item)">
+          <td><input type="checkbox" [value]="item.ID" /></td>
+          <td>
+            {{item.DName}}
+            <div class="icon-group">
+                <a href="javascript:;" *ngIf="checkStrategy('DINER_DINER_UPDATE')" class="icon-items fa fa-edit" data-toggle="tooltip"
+                title="编辑" (click)="showDialog(edit, item)"></a>
+                <a href="javascript:;" *ngIf="checkStrategy('DINER_DINER_DEL')" class="icon-items fa fa-trash-o" data-toggle="tooltip"
+                title="删除" (click)="delete(item.ID)"></a>
+              </div>
+          </td>
+          <td >{{item.DGender | getGender}}</td>
+          <td>{{item.DPhone}}</td>
+          <td>{{item.DEmail}}</td>
+          <td>{{item.DCuisine}}</td>
+          <td>{{item.DAddress}}</td>
+          <td>{{item.DBirth | date: " yyyy年MM月dd日 " }}</td>
+          <td>{{item.InputTime | date:"yyyy/MM/dd HH:mm:ss"}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<!-- 调用的弹窗 -->
+<slider-dialog #slider component="DinerDetailComponent" size="w300" title="详细信息"></slider-dialog>
+<bi-dialog #edit size="md" title="编辑" component='DinerEditComponent'></bi-dialog>
+<bi-dialog #add size="md" title="添加" component='DinerEditComponent'></bi-dialog>
+<bi-dialog #adds size="md" title="批量添加" component='DinerAddsComponent'></bi-dialog>

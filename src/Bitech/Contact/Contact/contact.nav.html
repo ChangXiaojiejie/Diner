@@ -1,0 +1,36 @@
+<!-- <div class="shortcut-btns">
+    <a class="btn btn-white" >
+        <i class="fa fa-plus-square"></i><span>创建联系人</span>
+    </a>
+</div>
+<h2 class="open-subtitle" )">按分组列表</h2>
+<div class="nav-list" *ngIf="checkStrategy('CONTACT_CONTACT_GROUPING')">
+    <ul>
+        <li><a routerLink="./" [queryParams]="{}" routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact:true}">全部</a></li>
+    </ul>
+</div>
+ -->
+<div class="view-groups scroller scrollerbar-primary" nav-area mode="single">
+  <nav-panel *ngIf="checkStrategy('CONTACT_CONTACT_GROUPING')" icon="iconfont icon-wojingshoude-" [nav-title]="'按分组列表'">
+    <ul>
+      <li *ngIf="checkStrategy('CONTACT_CONTACT_GROUPING_ALL')">
+        <a routerLink="./" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" [title]="'全部'">
+          全部
+        </a>
+      </li>
+      <li>
+        <a routerLink="./" *ngIf="checkStrategy('CONTACT_CONTACT_GROUPING_PROJECT')" [queryParams]="{type:1}" routerLinkActive="active">招商项目</a>
+      </li>
+      <li>
+        <a routerLink="./" *ngIf="checkStrategy('CONTACT_CONTACT_GROUPING_SETTLED')" [queryParams]="{type:2}" routerLinkActive="active">入驻企业</a>
+      </li>
+      <li>
+        <a routerLink="./" *ngIf="checkStrategy('CONTACT_CONTACT_GROUPING_ACTIVITY')" [queryParams]="{type:3}" routerLinkActive="active">活动报名</a>
+      </li>
+      <li>
+        <a routerLink="./" *ngIf="checkStrategy('CONTACT_CONTACT_GROUPING_STAR')" [queryParams]="{IsDefault:true}" routerLinkActive="active">星标联系人</a>
+      </li>
+    </ul>
+  </nav-panel>
+</div>

@@ -1,0 +1,15 @@
+ <div class="view-groups scroller scrollerbar-primary" nav-area mode="single">
+    <nav-panel *ngIf="checkStrategy('CONTACT_CONTACT_GROUPING')" icon="iconfont icon-wojingshoude-" [nav-title]="'人员列表'">
+      <ul>
+        <li *ngIf="checkStrategy('CONTACT_CONTACT_GROUPING_ALL')">
+          <a routerLink="./" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" [title]="'全部'">
+            全部
+          </a>
+        </li>
+        <li>
+          <a routerLink="./" *ngIf="checkStrategy('CONTACT_CONTACT_GROUPING_STAR')" [queryParams]="{IsDefault:true}" routerLinkActive="active">星标联系人</a>
+        </li>
+      </ul>
+    </nav-panel>
+  </div>
+  

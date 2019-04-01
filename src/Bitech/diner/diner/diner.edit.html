@@ -1,0 +1,34 @@
+<form class="form-horizontal" formValidate="DinerVM">
+  <div class="form-group col-sm-6">
+    <label class="control-label" for="DName">食客姓名：</label>
+    <input type="text" class="form-control" id="DName" name="DName" [(ngModel)]="editInfo.DName">
+  </div>
+  <div class="form-group col-sm-6">
+    <label class="control-label" for="DPhone">手机号码：</label>
+    <input type="text" class="form-control" id="DPhone"  name="DPhone" [(ngModel)]="editInfo.DPhone">
+  </div>
+  <div class="form-group col-sm-6">
+    <label class="control-label" for="DEmail">电子邮件：</label>
+    <input type="text" class="form-control" id="DEmail" name="DEmail" [(ngModel)]="editInfo.DEmail">
+  </div>
+  <div class="form-group col-sm-6">
+    <label class="control-label" for="DGender">性别：</label>
+    <div>
+      <select  id="DGender" name="DGender" [(ngModel)]="editInfo.DGender" style="width:50%" NgSelectOption ="dish">
+        <option *ngFor="let gender of genders; index as idx" [ngValue]="gender" >{{gender | getGender}}</option>
+      </select> 
+    </div>
+  </div>
+  <div class="form-group col-sm-6">
+    <label class="control-label" for="DCuisine">喜欢菜系：</label>
+    <div>
+      <select required = "必须选择菜系" id="Cuisine" name="DCuisine" [(ngModel)]="editInfo.DCuisine" style="width:50%" NgSelectOption ="dish">
+        <option *ngFor="let dish of dishNames; index as idx" [ngValue] ="dish">{{dish}}</option>
+      </select> 
+    </div>
+  </div>
+  <div class="form-group col-sm-6">
+    住址：<input type="text" class="form-control" id="DAddRess" name="DAddRess" [(ngModel)]="editInfo.DAddress">
+  </div>
+</form>
+  

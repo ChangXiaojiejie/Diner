@@ -1,0 +1,43 @@
+<form class="form-horizontal">
+  <div class="form-group col-sm-6" dinerHidden>
+      <label class="control-label" for="DName">食客姓名：</label>
+      <input type="text" class="form-control" id="DName" name="DName" [(ngModel)]="editInfo.DName" >
+  </div>
+  <div class="form-group col-sm-6" dinerHidden>
+    <label class="control-label" for="DPhone">手机号码：</label>
+    <input type="text" class="form-control" id="DPhone"  name="DPhone" [(ngModel)]="editInfo.DPhone" >
+  </div>
+  <div class="form-group col-sm-6" dinerHidden>
+    <label class="control-label" for="DEmail">电子邮件：</label>
+    <input type="text" class="form-control" id="DEmail" name="DEmail" [(ngModel)]="editInfo.DEmail" >
+  </div>
+  <div class="form-group col-sm-6"dinerHidden>
+    <label class="control-label" for="DCuisine">喜欢菜系：</label>
+    <div>
+      <select id="Cuisine" name="DCuisine" [(ngModel)]="editInfo.DCuisine" style="width:50%" NgSelectOption ="dish">
+        <option *ngFor="let dish of dishNames; index as idx" [ngValue]="dish" [attr.selected]="idx === 1">{{dish}}</option>
+        <option  selected ="true">123</option>
+      </select> 
+    </div>
+  </div>
+  <div class="form-group col-sm-6" dinerHidden>
+    <label class="control-label" for="DGender">性别：</label>
+    <div class="radio radio-default">
+      <label *ngFor="let gender of genders" >
+        <input  type="radio" name="DGender"  [(ngModel)]="editInfo.DGender" [value] = "gender">{{gender | getGender}}
+      </label>
+    </div>
+  </div>
+  <div class="form-group col-sm-6" dinerHidden>
+    住址：<input type="text" class="form-control" id="DAddRess" name="DAddRess" [(ngModel)]="editInfo.DAddress" dinerHidden>
+  </div>
+  <div class="form-group col-sm-6" >
+    <label class="control-label" for="DBirth">出生日期</label>
+    <input type="text" class="form-control" id="DBirth" placeholder="出生日期" name="DBirth" bi-wdatepicker [(ngModel)]="editInfo.DBirth" dinerHandEvent [dinerEl]= "'你正在完善出生日期信息...'" (handDisabled)="getDinerEl($event)">
+  </div>
+  <div class="form-group col-sm-6" >
+      <label class="control-label" for="InputTime">录入时间</label>
+      <input type="text" class="form-control" id="InputTime" placeholder="录入时间" name="InputTime" bi-wdatepicker [(ngModel)]="editInfo.InputTime" dinerHandEvent [dinerEl]= "'你正在完善录入时间信息...'" (handDisabled)="getDinerEl($event)">
+    </div>
+</form>
+      

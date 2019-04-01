@@ -1,0 +1,85 @@
+<ng-template #header let-context>
+  <h2 class="prop-slider-title">{{info?.DName}}</h2>
+  <div class="pull-right prop-form-tools">
+    <button  class="btn btn-icon fa fa-close" data-toggle="tooltip" (click)="context.cancel()"></button>
+  </div>
+</ng-template>
+<div class="col-sm-12">
+  <div class="panel panel-bordered panel-bordered-left">
+    <div class="panel-heading">
+      <h3 class="panel-title">个人详细信息</h3>
+    </div>
+    <div class="panel-body">
+      <div class="table-layout">
+        <div>
+          <span>食客ID：</span>
+          <span>{{info.ID}}</span>
+        </div>
+        <div>
+          <span>食客名称：</span>
+          <span>{{info.DName}}</span>
+        </div>
+        <div>
+          <span>食客性别：</span>
+          <span >{{info.DGender | getGender}}</span>
+        </div>
+        <div *ngIf="info.DBirth">
+          <span>出生日期：</span>
+          <span>{{info.DBirth | date:"yyyy年MM月dd日"}}</span>
+        </div>
+        <div>
+          <span>手机号码：</span>
+          <span>{{info.DPhone}}</span>
+        </div>
+        <div>
+          <span>电子邮件：</span>
+          <span>{{info.DEmail}}</span>
+        </div>
+
+        <div>
+          <span>食客住址：</span>
+          <span>{{info.DAddress}}</span>
+        </div>
+        <div>
+          <span>喜爱菜系：</span>
+          <span>{{info.DCuisine}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col-sm-12">
+  <div class="panel panel-bordered panel-bordered-left">
+    <div class="panel-heading">
+      <h3 class="panel-title">系统信息</h3>
+    </div>
+    <div class="panel-body">
+      <div class="table-layout">
+        <div>
+          <span>管理员：</span>
+          <span>{{info.Inputer}}</span>
+        </div>
+        <div>
+          <span>管理员ID：</span>
+          <span>{{info.InputerID}}</span>
+        </div>
+        <div>
+          <span>注册时间：</span>
+          <span>{{info.InputTime | date: "yyyy年MM月dd日 HH:mm"}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #footer>
+  <div class="pull-left">
+    <button class="btn btn-default" data-toggle="modal" *ngIf="checkStrategy('DINER_DINER_UPDATE')" (click)="showDialog(edit, info)">编辑</button>
+  </div>
+  <div class="pull-right">
+    <button class="btn btn-white dropdown-toggle" data-toggle="modal" *ngIf="checkStrategy('DINER_DINER_PERFECT')" (click)="showDialog(birth, info)">完善信息</button>
+  </div>
+</ng-template>
+<!-- 调用的弹窗 -->
+<bi-dialog #edit size="md" title="编辑" component='DinerEditComponent'></bi-dialog>
+<bi-dialog #birth size="md" title="完善信息" component='DinerBirthComponent'></bi-dialog>
+

@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+  <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+  <title>eWebEditor</title>
+  <script type="text/javascript" src="//assets.bitech.cn/assets/js/ewebeditor/js/buttons.js?v=110"></script>
+  <script type="text/javascript" src="//assets.bitech.cn/assets/js/ewebeditor/js/ewebeditor_core.js?v=110"></script>
+  <script type="text/javascript">
+    var reg = new RegExp('(^|&)s=([^&]*)(&|$)', 'i'),
+      r = window.location.search.substr(1).match(reg),
+      s = '';
+    if (r != null)
+      s = encodeURI(unescape(r[2]));
+
+    if (!s) s = '../../../';
+
+    ng(s + "ewebeditor/aspx/i.aspx?action=config&style=" + aA.StyleName + "&skey=" + aA.SKey +
+      "&h=" + aA.H +
+      "&v=110");
+
+  </script>
+  <script type="text/javascript">
+    ng("//assets.bitech.cn/assets/js/ewebeditor/js/zh-cn.js?v=110");
+
+  </script>
+  <script type="text/javascript">
+    EWEB.Init();
+    document.write("<link href='//assets.bitech.cn/assets/js/ewebeditor/skin/" + config.Skin +
+      "/editor.css?v=110' type='text/css' rel='stylesheet'>");
+
+  </script>
+</head>
+
+<body scrolling="no">
+  <script type="text/javascript">
+    wr();
+
+  </script>
+</body>
+
+</html>

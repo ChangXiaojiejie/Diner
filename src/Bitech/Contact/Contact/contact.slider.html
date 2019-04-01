@@ -1,0 +1,97 @@
+<ng-template #header let-context>
+  <h2 class="prop-slider-title">{{info.ContactName}}</h2>
+  <button class="close" data-close-slider="self" type="button" (click)="context.cancel()">×</button>
+</ng-template>
+
+<div class="col-sm-12">
+  <div class="panel panel-bordered panel-bordered-left">
+    <div class="panel-heading">
+      <h3 class="panel-title">个人信息</h3>
+    </div>
+    <div class="panel-body">
+      <div class="table-layout">
+        <div>
+          <span>项目名称：</span>
+          <span>{{info.BindTableValue}}</span>
+        </div>
+        <div>
+          <span>手机：</span>
+          <span>{{info.Mobile}}</span>
+        </div>
+        <div>
+          <span>电话：</span>
+          <span>{{info.Tel}}</span>
+        </div>
+        <div>
+          <span>电子邮件：</span>
+          <span>{{info.Email}}</span>
+        </div>
+        <div>
+          <span>传真：</span>
+          <span>{{info.Fax}}</span>
+        </div>
+        <div>
+          <span>性别：</span>
+          <span>{{['','男','女'][info.Sex||0]}}</span>
+        </div>
+        <div>
+          <span>出生日期：</span>
+          <span>
+            <abbr>{{info.BirthYear}}</abbr>
+            <abbr>- {{info.BirthMonth}}</abbr>
+            <abbr>- {{info.BirthDay}}</abbr>
+          </span>
+        </div>
+        <div>
+          <span>证件号码：</span>
+          <span>{{info.IDCardNo}}</span>
+        </div>
+        <div>
+          <span>是否星标：</span>
+          <span>{{info.IsDefault?'是':'否'}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-bordered panel-bordered-left">
+    <div class="panel-heading">
+      <h3 class="panel-title">公司信息</h3>
+    </div>
+    <div class="panel-body">
+      <div class="table-layout">
+        <div>
+          <span>公司名称：</span>
+          <span>{{info.CompanyName}}</span>
+        </div>
+        <div>
+          <span>部门：</span>
+          <span>{{info.DeptName}}</span>
+        </div>
+        <div>
+          <span>岗位：</span>
+          <span>{{info.Position}}</span>
+        </div>
+        <div>
+          <span>角色：</span>
+          <span>{{getContactTypes(info)}}</span>
+        </div>
+        <div>
+          <span>简历：</span>
+          <span>{{info.Resume}}</span>
+        </div>
+        <div>
+          <span>所属园区：</span>
+          <span>{{parkRes}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #footer>
+    <div class="pull-right">
+      <button class="btn btn-white" data-toggle="modal" *ngIf="checkStrategy('CONTACT_CONTACT_EDIT')" (click)="showDialog(edit, info)">编辑</button>
+      <button class="btn btn-white" data-toggle="modal" *ngIf="checkStrategy('CONTACT_CONTACT_DEL')" (click)="delete(info.ID)">删除</button>
+    </div>
+  </ng-template>
+
+  <bi-dialog #edit size="md" title="编辑联系人" component='ContctEditComponent'></bi-dialog>

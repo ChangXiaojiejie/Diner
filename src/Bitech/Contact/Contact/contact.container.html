@@ -1,0 +1,90 @@
+<div class="header-bar">
+  <div class="pull-left">
+    <nav-map-path suffix>
+    </nav-map-path>
+  </div>
+</div>
+
+<search-panel hide>
+  <div class="row">
+    <div class="form-inline">
+
+      <div class="col-xs-12 col-md-4 col-lg-4">
+        <div class="form-group">
+          <label class="label-name">姓名</label>
+          <div class="lab-box">
+            <input type="text" class="form-control " #key placeholder="姓名" (keyup)="instantSearch(key)" types="input" search-field>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-md-4 col-lg-4">
+        <div class="form-group">
+          <label class="label-name">项目名称</label>
+          <div class="lab-box">
+            <input type="text" class="form-control " #key placeholder="项目名称" (keyup)="searchKey(key,'BindTableValue')" types="input"
+              search-field>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</search-panel>
+
+<div class="content">
+  <div class="toolbar mt0 mb10">
+    <div class="pull-left">
+      <button class="btn btn-cyan" *ngIf="checkStrategy('CONTACT_CONTACT_ADD')" (click)="showDialog(add)">创建联系人</button>
+
+      <button class="btn btn-white ml5" *ngIf="checkStrategy('CONTACT_CONTACT_SEND')" (click)="send(senddialog,'SMS',all)">发送短信</button>
+      <button class="btn btn-white ml5" *ngIf="checkStrategy('CONTACT_CONTACT_SEND')" (click)="send(senddialog,'Mail',all)">发送邮件</button>
+    </div>
+
+    <bi-pager #pager class="pull-right" callBack="getContacts"></bi-pager>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover" biCheckbox #all="biCheckbox" auto-rest>
+      <thead>
+        <tr>
+          <td width="5%" class="alignCenter">
+            <input type="checkbox">
+          </td>
+          <td width="14%" bi-orderby="ContactName">姓名</td>
+          <td width="12%">角色</td>
+          <td>项目名称</td>
+          <td width="12%">手机</td>
+          <td width="12%">电话</td>
+          <td width="18%">电子邮件</td>
+        </tr>
+      </thead>
+      <tbody *ngFor="let x of pageInfo?.Items" style="border:0px;" class="tbody-hover">
+        <tr class="default">
+          <td colspan="7" class="alignLeft">{{x.Key}}</td>
+        </tr>
+        <tr *ngFor="let item of x.g" (click)="showSlider($event, slider, item)">
+          <td class="alignCenter">
+            <input type="checkbox" [ngValue]="item?.ID">
+          </td>
+          <td class="alignLeft">
+            {{item.ContactName}}
+            <div class="icon-group">
+              <a href="javascript:;" *ngIf="checkStrategy('CONTACT_CONTACT_EDIT')" class="icon-items fa fa-edit" data-toggle="tooltip"
+                title="编辑" (click)="showDialog(edit, item)"></a>
+            </div>
+          </td>
+          <td class="alignLeft">{{getContactTypes(item)}}</td>
+          <td class="alignLeft">{{item.BindTableValue}}</td>
+          <td>{{item.Mobile}}</td>
+          <td>{{item.Tel}}</td>
+          <td>{{item.Email}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<slider-dialog #slider component="ContctSliderComponent" size="w400" title="详细信息"></slider-dialog>
+<bi-dialog #edit size="md" title="编辑联系人" component='ContctEditComponent'></bi-dialog>
+<bi-dialog #senddialog size="md" title="发送消息" submitText='发送' component='ContctSendEditComponent'></bi-dialog>
+<bi-dialog #add size="md" title="创建联系人" component='ContctEditComponent'></bi-dialog>

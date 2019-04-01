@@ -1,0 +1,45 @@
+<!-- <form class="form-horizontal" formValidate="RoomVM" (retrieve)="checkForm($event)" [standalone]="true"></form> -->
+
+<form class="form-horizontal" formValidate="ContactVM" (retrieve)="checkForm($event)" [standalone]="true">
+  <div class="form-group col-sm-6">
+    <label class="control-label" for="ContactName">姓名：</label>
+    <!-- <input type="text" class="form-control" id="ContactName"  required requiredErrorMsg="用户名 字段是必需的。" name="ContactName" [(ngModel)]="editInfo.ContactName" (change)="updateEName()"> -->
+    <input type="text" class="form-control" id="ContactName" name="ContactName" [(ngModel)]="editInfo.ContactName" (change)="updateEName()">
+  </div>
+  <div class="form-group col-sm-6">
+    <label class="control-label" for="BindTableValue">项目名称：</label>
+    <input type="text" class="form-control" id="BindTableValue" name="BindTableValue" [(ngModel)]="editInfo.BindTableValue">
+  </div>
+  <div class="form-group col-sm-6">
+    <label class="control-label" for="Mobile">手机：</label>
+    <!-- <input type="text" class="form-control" id="Mobile"  required requiredErrorMsg="手机号 字段是必需的。" name="Mobile" [(ngModel)]="editInfo.Mobile"> -->
+    <input type="text" class="form-control" id="Mobile"  name="Mobile" [(ngModel)]="editInfo.Mobile">
+  </div>
+  <div class="form-group col-sm-6">
+    <label class="control-label" for="Email">电子邮件：</label>
+    <input type="text" class="form-control" id="Email" name="Email" [(ngModel)]="editInfo.Email">
+  </div>
+  <div class="form-group col-sm-12">
+    <label class="control-label" for="BindTableValue">公司名称：</label>
+    <input type="text" class="form-control" id="CompanyName" name="CompanyName" [(ngModel)]="editInfo.CompanyName">
+  </div>
+  <div class="form-group col-sm-6">
+    <label class="control-label" for="DeptName">部门：</label>
+    <input type="text" class="form-control" id="DeptName" name="DeptName" [(ngModel)]="editInfo.DeptName">
+  </div>
+  <div class="form-group col-sm-6">
+    <label class="control-label" for="DeptName">岗位：</label>
+    <input type="text" class="form-control" id="Position" name="Position" [(ngModel)]="editInfo.Position">
+  </div>
+  <div class="form-group col-sm-6">
+    <label class="control-label" for="IsDefault">是否星标：</label>
+    <div class="radio radio-inline radio-default">
+      <label>
+        <input type="radio" name="IsDefault" [(ngModel)]="editInfo.IsDefault" [value]="true">是
+      </label>
+      <label>
+        <input type="radio" name="IsDefault" [(ngModel)]="editInfo.IsDefault" [value]="false">否
+      </label>
+    </div>
+  </div>
+</form>

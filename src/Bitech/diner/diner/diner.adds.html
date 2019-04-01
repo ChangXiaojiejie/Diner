@@ -1,0 +1,56 @@
+<form class="form-horizontal" autocomplete="off" name="TagClass" formValidate="DinerVM" [standalone]="true">
+  <div class="panel panel-bordered panel-bordered-left">
+    <div class="panel-body">
+      <div class="toolbar clearfix toolbar-border-b mb10">
+        <div class="col-sm-11">
+            <h3 class="toolbar-title">批量添加</h3>
+        </div>
+        <div class="col-sm-1">
+            <a  title="新增标签项" (click)="addDiners()">
+                <i class="fa fa-plus"></i>
+            </a> &nbsp;
+            <a  title="删除标签项" (click)="delDiners()">
+                <i class="fa fa-trash"></i>
+            </a>
+        </div>
+      </div>
+      <div class="row mb10" *ngFor="let diner of editArr;let idx=index">
+          <div class="col-sm-1">
+              <input type="text" name="Sequence" [ngModelOptions]="{standalone:true}" class="form-control" readonly [(ngModel)]="diner.Sequence"
+                  placeholder="序号">
+          </div>
+          <div class="col-sm-10" style="overflow:auto">
+              <div class="pull-left san-line" [ngHide]="!diner.Layer" [ngStyle]="{width:(diner.Layer*20)+'px'}"></div>
+              <div class="form-group pull-left  col-sm-4">
+                <input type="text" name="DName"  [ngModelOptions]="{standalone:true}" class="form-control" [(ngModel)]="diner.DName"
+                  placeholder="食客名称">
+              </div>
+              <div class="form-group pull-left  col-sm-4">
+                <input type="text" name="DPhone"  [ngModelOptions]="{standalone:true}" class="form-control" [(ngModel)]="diner.DPhone"
+                  placeholder="手机号码">
+              </div>
+              <div class="form-group pull-left  col-sm-4">
+                  <input type="text" name="DEmail" [ngModelOptions]="{standalone:true}" class="form-control" [(ngModel)]="diner.DEmail"
+                    placeholder="电子邮件">
+              </div>
+              <div class="form-group pull-left  col-sm-4">
+                  <label class="control-label" for="DName">性别：</label>
+                  <select  id="DGender" name="DGender" [(ngModel)]="editArr[idx].DGender" [ngModelOptions]="{standalone: true}" style="width:50%" NgSelectOption ="gender">
+                      <option *ngFor="let gender of genders; index as idx" [ngValue]="gender" >{{gender | getGender}}</option>
+                  </select> 
+              </div>
+              <div class="form-group pull-left  col-sm-4" >
+                  <label class="control-label" for="DName">菜系：</label>
+                  <select  id="Cuisine" name="DCuisine" [(ngModel)]="editArr[idx].DCuisine" [ngModelOptions]="{standalone: true}" style="width:50%" NgSelectOption ="dish">
+                    <option *ngFor="let dish of dishNames; index as idx" [ngValue]="dish" >{{dish}}</option>
+                  </select> 
+              </div>
+              <div class="form-group pull-left  col-sm-4">
+                <input type="text" name="DAddRess" [ngModelOptions]="{standalone:true}" class="form-control" [(ngModel)]="diner.DAddRess"
+                  placeholder="住址">
+              </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</form>
